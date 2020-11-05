@@ -1,27 +1,12 @@
-#name: A workflow for my Hello World file
-#on: push
-#jobs:
-#  build:
-#    name: Hello world action
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v1
-#      - uses: ./action-a
-#        with:
-#          MY_NAME: "Mona"
-
-on: [push]
-
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-    - name: Hello world action step
-      id: hello
-      uses: xtralab/hello-world-javascript-action@v1
+    - uses: actions/checkout@v2
+    - id: foo
+      uses: xtralab/hello-world-composite-run-steps-action@v1
       with:
-        who-to-greet: 'Roebius did it with JavaScript'
-    # Use the output from the `hello` step
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
+        who-to-greet: 'hello composite!'
+    - run: echo random-number ${{ steps.foo.outputs.random-number }} 
+      shell: bash
