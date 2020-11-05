@@ -19,9 +19,9 @@ jobs:
     steps:
     - name: Hello world action step
       id: hello
-      uses: xtralab/hello-world-docker-action@v1
+      uses: xtralab/hello-world-javascript-action@v1
       with:
-        who-to-greet: 'Roebius did it'
+        who-to-greet: 'Roebius did it with JavaScript'
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
